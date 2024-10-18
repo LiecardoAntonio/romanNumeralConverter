@@ -93,6 +93,20 @@ input[type="radio"] {
   background-color: rgb(0, 75, 120);
 }
 
+/* if not using dialog use this styling */
+#result-container {
+  margin-top: 1rem;
+  background-color: rgb(16, 44, 90);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border: 3px solid gold;
+  text-align: center;
+}
+
+/* if using dialog use this style
 #result-container {
   margin-bottom: 5vh;
   background-color: rgb(16, 44, 90);
@@ -100,7 +114,7 @@ input[type="radio"] {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+} */
 
 #convert-type {
   color: rgb(203, 173, 1);

@@ -9,17 +9,25 @@ const resultMsg = document.getElementById('output');
 convertBtn.addEventListener('click', () => {
   const numInputValue = numberInput.value;
   if(!numInputValue) {
-    alert('You must input a number');
+    resultMsg.innerText = 'Please enter a valid number';
+    return;
+  } else if(numInputValue <= 0) {
+    resultMsg.innerText = 'Please enter a number greater than or equal to 1';
+    return;
+  } else if(numInputValue >= 4000) {
+    resultMsg.innerText = 'Please enter a number less than or equal to 3999';
     return;
   }
   // numberInput.value = '';//delete the curr input
 
   const optionChecked = getCheckedOption();
   convertType.textContent = optionChecked;
-  resultContainer.style.border = '3px solid rgb(203, 200, 5)';
-  resultContainer.style.padding = '1rem 1rem 0 1rem';
-  resultContainer.style.width = '40%';
-  resultContainer.showModal();
+
+  //uncomment below if using dialog
+  // resultContainer.style.border = '3px solid rgb(203, 200, 5)';
+  // resultContainer.style.padding = '1rem 1rem 0 1rem';
+  // resultContainer.style.width = '40%';
+  // resultContainer.showModal();
 
   // console.log(optionChecked);
   switch (optionChecked) {
@@ -36,17 +44,18 @@ convertBtn.addEventListener('click', () => {
       resultMsg.textContent = convertToRoman(numInputValue);
       break;
     default:
-      resultMsg.textContent = convertToBinary(numInputValue);
+      resultMsg.textContent = convertToRoman(numInputValue);
       break;
   }
 })
 
-resultContainer.addEventListener('click', (e) => {
-  // console.log(e.target);
-  if(e.target == resultContainer) {
-    resultContainer.close();
-  }
-})
+//uncomment below function if using dialog
+// resultContainer.addEventListener('click', (e) => {
+//   // console.log(e.target);
+//   if(e.target == resultContainer) {
+//     resultContainer.close();
+//   }
+// })
 
 function getCheckedOption() {
   for(option of convertOptions) {
