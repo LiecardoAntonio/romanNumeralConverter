@@ -1,0 +1,108 @@
+* {
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: rgb(220, 225, 230);
+}
+
+body {
+  background: linear-gradient(
+    50deg,
+    rgb(13, 49, 73),
+    rgb(40, 92, 171)
+  );
+}
+
+main {
+  position: absolute;
+  right: 30vw;
+  left: 30vw;
+}
+
+#hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center ;
+}
+
+#hero-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 0;
+  color: gold;
+  text-shadow: 2px 2px rgb(32, 48, 75);;
+}
+
+#author {
+  margin-bottom: 1rem;
+}
+
+#author-name {
+  color: rgb(213, 184, 19);
+}
+
+#author-name * {
+  color: inherit;
+}
+
+#convert-container {
+  background-color: rgb(16, 44, 90);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem 2rem 2rem;
+  border: 3px solid rgb(203, 200, 5);
+}
+
+#convert-container * {
+  color: rgb(253, 207, 22);
+}
+
+#instruction-label {
+  margin-bottom: 1rem;
+}
+
+#number-input {
+  color: white;
+  text-align: center;
+}
+
+input[type="number"] {
+  margin: 1rem;
+  width: 40%;
+  background-color: rgb(0, 34, 57);
+  padding: 0.5rem;
+}
+
+input[type="radio"] {
+  accent-color: rgb(0, 75, 156);;
+}
+
+#convert-btn {
+  margin: 1.5rem 0 0 0;
+  padding: 0.5rem;
+  width: 20%;
+  background-color: rgb(0, 75, 156);
+}
+
+#convert-btn:active {
+  background-color: rgb(0, 75, 120);
+}
+
+#result-container {
+  margin-top: 1rem;
+  background-color: rgb(16, 44, 90);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border: 3px solid rgb(196, 192, 0);
+}
+
+#result-message {
+  color: gold;
+}
