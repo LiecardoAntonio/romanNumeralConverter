@@ -18,7 +18,7 @@
 
     <section id="convert-container">
       <h2 id="instruction-label">Input a number:</h2>
-      <input type="number" name="" id="number-input">
+      <input type="number" name="" id="number">
       <div id="convert-options">
         <input type="radio" name="convert-option" class="convert-option" id="" checked>Binary
         <input type="radio" name="convert-option" class="convert-option" id="">Hexadecimal
@@ -28,9 +28,10 @@
       <button id="convert-btn">Convert</button>
     </section>
     
-    <section id="result-container">
-      <h2 id="result-message">RESULT</h2>
-    </section>
+    <dialog id="result-container">
+      <p id="convert-type"></p>
+      <p id="output"></p>
+    </dialog>
 
   </main>
   

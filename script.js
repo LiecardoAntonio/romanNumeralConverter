@@ -1,7 +1,9 @@
-const numberInput = document.getElementById('number-input');
+const numberInput = document.getElementById('number');
 const convertOptions = document.querySelectorAll('.convert-option');
 const convertBtn = document.getElementById('convert-btn');
-const resultMsg = document.getElementById('result-message');
+const resultContainer = document.getElementById('result-container');
+const convertType = document.getElementById('convert-type');
+const resultMsg = document.getElementById('output');
 
 
 convertBtn.addEventListener('click', () => {
@@ -13,23 +15,36 @@ convertBtn.addEventListener('click', () => {
   // numberInput.value = '';//delete the curr input
 
   const optionChecked = getCheckedOption();
+  convertType.textContent = optionChecked;
+  resultContainer.style.border = '3px solid rgb(203, 200, 5)';
+  resultContainer.style.padding = '1rem 1rem 0 1rem';
+  resultContainer.style.width = '40%';
+  resultContainer.showModal();
+
   // console.log(optionChecked);
   switch (optionChecked) {
     case 'Binary':
-      convertToBinary(numInputValue);
+      resultMsg.textContent = convertToBinary(numInputValue);
       break;
     case 'Hexadecimal':
-      convertToHexadecimal(numInputValue);
+      resultMsg.textContent = convertToHexadecimal(numInputValue);
       break;
     case 'Octal':
-      convertToOctal(numInputValue);
+      resultMsg.textContent = convertToOctal(numInputValue);
       break;
     case 'Roman':
-      convertToRoman(numInputValue);
+      resultMsg.textContent = convertToRoman(numInputValue);
       break;
     default:
-      convertToBinary(numInputValue);
+      resultMsg.textContent = convertToBinary(numInputValue);
       break;
+  }
+})
+
+resultContainer.addEventListener('click', (e) => {
+  // console.log(e.target);
+  if(e.target == resultContainer) {
+    resultContainer.close();
   }
 })
 
@@ -44,28 +59,90 @@ function getCheckedOption() {
 }
 
 function convertToBinary(num) {
-  if(num === 0){
-    return '0';
-  } else if(num === 1) {
-    return '1'
+  if(num === 0 || num === 1){
+    return String(num);
   } else {
-    return convertToBinary(num / 2) + (num % 2);
+    return convertToBinary(Math.floor(num / 2)) + (num % 2);
   }
 }
-let result = '';
-result += convertToBinary(10);
-console.log(result);
+//test the binary converter function
+// let result = '';
+// result += convertToBinary(254);
+// console.log(result);
 
 function convertToHexadecimal(num) {
-  console.log('hexadecimal');
+  const hexDigits = '0123456789ABCDEF';
+  let hexString = '';
+  
+  // Handle the case where the number is 0
+  if (num === 0) {
+    return '0';
+  }
+  
+  // Convert the number to hexadecimal
+  while (num > 0) {
+    let remainder = num % 16;
+    hexString = hexDigits[remainder] + hexString;
+    num = Math.floor(num / 16);
+  }
+  
+  return hexString;
+
+  // or using built-in function 
+  // let hexString = num.toString(16).toUpperCase();
+  
+  // // Return the result
+  // return hexString;
 }
 
 function convertToOctal(num) {
-  console.log('octal');
+  let octalString = '';
+  
+  // Handle the case where the number is 0
+  if (num === 0) {
+    return '0';
+  }
+  
+  // Convert the number to octal
+  while (num > 0) {
+    let remainder = num % 8;
+    octalString = remainder + octalString;
+    num = Math.floor(num / 8);
+  }
+  
+  return octalString;
 }
 
 function convertToRoman(num) {
-  console.log('roman');
+  // Array of Roman numerals and their corresponding decimal values
+  const romanNumerals = [
+    { value: 1000, numeral: 'M' },
+    { value: 900, numeral: 'CM' },
+    { value: 500, numeral: 'D' },
+    { value: 400, numeral: 'CD' },
+    { value: 100, numeral: 'C' },
+    { value: 90, numeral: 'XC' },
+    { value: 50, numeral: 'L' },
+    { value: 40, numeral: 'XL' },
+    { value: 10, numeral: 'X' },
+    { value: 9, numeral: 'IX' },
+    { value: 5, numeral: 'V' },
+    { value: 4, numeral: 'IV' },
+    { value: 1, numeral: 'I' }
+  ];
+
+  let romanString = '';
+
+  // Loop through the Roman numerals array
+  for (let i = 0; i < romanNumerals.length; i++) {
+    // While the current decimal value can fit into the number
+    while (num >= romanNumerals[i].value) {
+      romanString += romanNumerals[i].numeral;  // Append the Roman numeral
+      num -= romanNumerals[i].value;            // Subtract the decimal value from the number
+    }
+  }
+
+  return romanString;
 }
 
 
